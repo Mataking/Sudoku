@@ -1,9 +1,12 @@
 package sudokupattern.Observer;
 
+import sudokupattern.IHM.IHMSudoku;
+
+import javax.swing.*;
 import java.util.Observable;
 import java.util.Observer;
 
-public class CVisuGrille9x9 implements Observer{
+public class CVisuGrille9x9 extends IHMSudoku implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -17,6 +20,7 @@ public class CVisuGrille9x9 implements Observer{
 			}
 			if(l == 3 || l== 6){
 				System.out.println("");
+				JLabel la = new JLabel();
 				System.out.println("------|-------|------");
 			}
 			else

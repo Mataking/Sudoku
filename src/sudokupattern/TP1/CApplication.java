@@ -2,11 +2,14 @@ package sudokupattern.TP1;
 
 
 import sudokupattern.Adapter.CGrilleXMLWriter;
+import sudokupattern.IHM.IHMSudoku;
 import sudokupattern.Observer.CGrille9x9;
 import sudokupattern.Observer.CVisuGrille9x9;
 import sudokupattern.Strategy.*;
 import sudokupattern.TP1.Decorateur.DecoLog;
 import sudokupattern.TP1.Interface.Solveur;
+
+import javax.swing.*;
 
 public class CApplication {
 
@@ -14,6 +17,8 @@ public class CApplication {
 	public static final int FROM_MANUEL = 2;
 	public static final int FROM_PICTURE = 3;
     public static final int FROM_AUTO = 4;
+
+    //private JPanel principal;
 
 	// programme principal
 	public static void main(String[] args) {
@@ -24,6 +29,12 @@ public class CApplication {
 
 		// obtient une grille par strategy
 		//CGrille9x9 grille = (new CAcquisitionGrille(new CFournisseur1())).get();
+
+        JFrame jFrame = new JFrame("IHMSudoku");
+        jFrame.setContentPane(new IHMSudoku().getPrincipalPanel());
+        jFrame.pack();
+        jFrame.setVisible(true);
+
 
 		switch (method){
 			case FROM_FILE:
