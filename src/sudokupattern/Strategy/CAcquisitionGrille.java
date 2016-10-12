@@ -1,14 +1,28 @@
 package sudokupattern.Strategy;
 
-import sudokupattern.Observer.CGrille9x9;
+import sudokupattern.Strategy.Impl.AutoGrilleImpl;
+import sudokupattern.Strategy.Impl.CAcquisitionGrilleImpl;
+import sudokupattern.Strategy.Impl.FileGrilleImpl;
 
-public class CAcquisitionGrille {
+public class CAcquisitionGrille implements CAcquisitionGrilleImpl {
 
-	public FileGrille fileGrille = new FileGrille();
+	@Override
+	public FileGrilleImpl getFileGrille() {
+		return new FileGrille();
+	}
 
-	public ManuelGrille manuelGrille = new ManuelGrille();
+	@Override
+	public AutoGrilleImpl getAutoGrille() {
+		return new AutoGrille();
+	}
 
-	public PictureGrille pictureGrille = new PictureGrille();
+	@Override
+	public ManuelGrille getManualGrille() {
+		return new ManuelGrille();
+	}
 
-	public AutoGrille autoGrille = new AutoGrille();
+	@Override
+	public PictureGrille getPictureGrille() {
+		return new PictureGrille();
+	}
 }

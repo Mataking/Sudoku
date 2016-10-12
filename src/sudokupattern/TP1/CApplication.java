@@ -1,53 +1,58 @@
 package sudokupattern.TP1;
 
-
 import sudokupattern.Adapter.CGrilleXMLWriter;
 import sudokupattern.IHM.IHMSudoku;
+import sudokupattern.Iterator.Impl.ModeAcquisitionGrilleIteratorImpl;
+import sudokupattern.Iterator.ModeAcquisitionGrilleContainer;
 import sudokupattern.Observer.CGrille9x9;
 import sudokupattern.Observer.CVisuGrille9x9;
 import sudokupattern.Strategy.*;
 import sudokupattern.TP1.Decorateur.DecoLog;
 import sudokupattern.TP1.Interface.Solveur;
 
-import javax.swing.*;
-
 public class CApplication {
-
-	public static final int FROM_FILE = 1;
-	public static final int FROM_MANUEL = 2;
-	public static final int FROM_PICTURE = 3;
-    public static final int FROM_AUTO = 4;
-
-    //private JPanel principal;
 
 	// programme principal
 	public static void main(String[] args) {
 
-		int method = 1;
+		ModeAcquisitionGrilleContainer modeAcquisitionGrilleContainer = new ModeAcquisitionGrilleContainer();
+
+		IHMSudoku ihmSudoku = new IHMSudoku();// = new IHMSudoku();
+
+
+		/**
+		 * 	Afficher tous les mode possible pour générer une grille
+		 * 	Voir le contenu dans
+		 */
+		System.out.println("Affichage des modes d'acquisition d'une grille : \n");
+		for(ModeAcquisitionGrilleIteratorImpl iterContainerModeAcquisitionGrille = modeAcquisitionGrilleContainer.getModeAcquisitionGrilleIterator(); iterContainerModeAcquisitionGrille.hasNext();){
+			String name = (String)iterContainerModeAcquisitionGrille.next();
+			System.out.println("Name : " + name);
+		}
 
 		CGrille9x9 grille;
 
 		// obtient une grille par strategy
 		//CGrille9x9 grille = (new CAcquisitionGrille(new CFournisseur1())).get();
 
-        JFrame jFrame = new JFrame("IHMSudoku");
+  /*      JFrame jFrame = new JFrame("IHMSudoku");
         jFrame.setContentPane(new IHMSudoku().getPrincipalPanel());
         jFrame.pack();
-        jFrame.setVisible(true);
+        jFrame.setVisible(true);*/
 
 
-		switch (method){
-			case FROM_FILE:
-				grille = (new CAcquisitionGrille()).fileGrille.getFromFile("src//sudokupattern//grille.txt");
+		switch (ihmSudoku.lectureConsole()){
+			case "Fichier":
+				grille = (new CAcquisitionGrille()).getFileGrille().getFromFile("src//sudokupattern//grille.txt");
 				break;
-			case FROM_MANUEL:
-				grille = (new CAcquisitionGrille()).manuelGrille.getFromManuel();
+			case "Manuel":
+				grille = (new CAcquisitionGrille()).getManualGrille().getFromManuel();
 				break;
-			case FROM_PICTURE:
-				grille = (new CAcquisitionGrille()).pictureGrille.getFromPicture();
+			case "Image":
+				grille = (new CAcquisitionGrille()).getPictureGrille().getFromPicture();
 				break;
-            case FROM_AUTO:
-                grille = (new CAcquisitionGrille()).autoGrille.getAutoGrille(2);
+            case "Automatique":
+                grille = (new CAcquisitionGrille()).getAutoGrille().getAutoGrille(2);
                 break;
 			default:
 				grille = null;
@@ -55,22 +60,26 @@ public class CApplication {
 				break;
 		}
 
-		// obtient une grille par fabrique simple
-		//CGrille9x9 grille2 = (new Fabrique.CAcquisitionGrille1()).get();
-		
-		// connecte l'observateur
-		CVisuGrille9x9 visu = new CVisuGrille9x9();
-		grille.addObserver(visu);
+		if(grille != null){
+			// obtient une grille par fabrique simple
+			//CGrille9x9 grille2 = (new Fabrique.CAcquisitionGrille1()).get();
 
-		// connecte décorateur
-		// resoud
-        Solveur decorateSolveur = (new DecoLog(new CSolveur9x9()));
-        decorateSolveur.solve(grille);
+			// connecte l'observateur
+			CVisuGrille9x9 visu = new CVisuGrille9x9();
+			grille.addObserver(visu);
 
-		// enregistre dans xml
-		CGrilleXMLWriter saver = new CGrilleXMLWriter("example.xml");
-		saver.save(grille);
-		 
+			// connecte décorateur
+			// resoud
+			Solveur decorateSolveur = (new DecoLog(new CSolveur9x9()));
+			decorateSolveur.solve(grille);
+
+			// enregistre dans xml
+			CGrilleXMLWriter saver = new CGrilleXMLWriter("example.xml");
+			saver.save(grille);
+		}
+		else
+		{
+			System.err.print("\nErreur lors de la selection.\nRetry le programme.\n");
+		}
 	}
-
 }
