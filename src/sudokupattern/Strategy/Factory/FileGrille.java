@@ -1,7 +1,7 @@
-package sudokupattern.Strategy;
+package sudokupattern.Strategy.Factory;
 
 import sudokupattern.Observer.CGrille9x9;
-import sudokupattern.Strategy.Impl.FileGrilleImpl;
+import sudokupattern.Strategy.Factory.Impl.FileGrilleImpl;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

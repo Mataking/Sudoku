@@ -1,7 +1,7 @@
-package sudokupattern.Strategy;
+package sudokupattern.Strategy.Factory;
 
 import sudokupattern.Observer.CGrille9x9;
-import sudokupattern.Strategy.Impl.PictureGrilleImpl;
+import sudokupattern.Strategy.Factory.Impl.PictureGrilleImpl;
 
 /**
  * Created by Mata on 04/10/2016.

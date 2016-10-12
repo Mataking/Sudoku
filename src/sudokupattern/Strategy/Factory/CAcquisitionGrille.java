@@ -1,8 +1,8 @@
-package sudokupattern.Strategy;
+package sudokupattern.Strategy.Factory;
 
-import sudokupattern.Strategy.Impl.AutoGrilleImpl;
-import sudokupattern.Strategy.Impl.CAcquisitionGrilleImpl;
-import sudokupattern.Strategy.Impl.FileGrilleImpl;
+import sudokupattern.Strategy.Factory.Impl.AutoGrilleImpl;
+import sudokupattern.Strategy.Factory.Impl.CAcquisitionGrilleImpl;
+import sudokupattern.Strategy.Factory.Impl.FileGrilleImpl;
 
 public class CAcquisitionGrille implements CAcquisitionGrilleImpl {
 

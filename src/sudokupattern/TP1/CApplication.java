@@ -6,19 +6,23 @@ import sudokupattern.Iterator.Impl.ModeAcquisitionGrilleIteratorImpl;
 import sudokupattern.Iterator.ModeAcquisitionGrilleContainer;
 import sudokupattern.Observer.CGrille9x9;
 import sudokupattern.Observer.CVisuGrille9x9;
-import sudokupattern.Strategy.*;
+import sudokupattern.Strategy.Factory.CAcquisitionGrille;
+import sudokupattern.Strategy.Singleton.FactorySingleton;
 import sudokupattern.TP1.Decorateur.DecoLog;
 import sudokupattern.TP1.Interface.Solveur;
+
 
 public class CApplication {
 
 	// programme principal
-	public static void main(String[] args) {
+	public static synchronized void main(String[] args) {
 
 		ModeAcquisitionGrilleContainer modeAcquisitionGrilleContainer = new ModeAcquisitionGrilleContainer();
 
-		IHMSudoku ihmSudoku = new IHMSudoku();// = new IHMSudoku();
+		IHMSudoku ihmSudoku = new IHMSudoku();
 
+
+        FactorySingleton factorySingleton = FactorySingleton.getInstance();
 
 		/**
 		 * 	Afficher tous les mode possible pour générer une grille
@@ -40,19 +44,18 @@ public class CApplication {
         jFrame.pack();
         jFrame.setVisible(true);*/
 
-
 		switch (ihmSudoku.lectureConsole()){
 			case "Fichier":
-				grille = (new CAcquisitionGrille()).getFileGrille().getFromFile("src//sudokupattern//grille.txt");
+				grille = factorySingleton.getCAcquisitionGrille().getFileGrille().getFromFile("src//sudokupattern//grille.txt");
 				break;
 			case "Manuel":
-				grille = (new CAcquisitionGrille()).getManualGrille().getFromManuel();
+				grille = factorySingleton.getCAcquisitionGrille().getManualGrille().getFromManuel();
 				break;
 			case "Image":
-				grille = (new CAcquisitionGrille()).getPictureGrille().getFromPicture();
+				grille = factorySingleton.getCAcquisitionGrille().getPictureGrille().getFromPicture();
 				break;
             case "Automatique":
-                grille = (new CAcquisitionGrille()).getAutoGrille().getAutoGrille(2);
+                grille = factorySingleton.getCAcquisitionGrille().getAutoGrille().getAutoGrille(2);
                 break;
 			default:
 				grille = null;

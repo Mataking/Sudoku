@@ -1,4 +1,4 @@
-package sudokupattern.Strategy.Impl;
+package sudokupattern.Strategy.Factory.Impl;
 
 import sudokupattern.Observer.CGrille9x9;
 
