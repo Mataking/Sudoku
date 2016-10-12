@@ -15,38 +15,7 @@ import static com.sun.glass.ui.Cursor.setVisible;
  */
 public class IHMSudoku {
 
-    public String lectureConsole() {
-        BufferedReader br = null;
-        String input = null;
 
-        try {
-
-            br = new BufferedReader(new InputStreamReader(System.in));
-
-            System.out.println("-----------\n");
-
-            System.out.print("Enter your type mode manually : ");
-            input = br.readLine();
-
-            if ("q".equals(input)) {
-                System.exit(0);
-            }
-
-            System.out.println("-----------\n");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return input;
-    }
 
 
     private JPanel principalPanel;

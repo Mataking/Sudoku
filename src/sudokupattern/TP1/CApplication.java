@@ -11,6 +11,10 @@ import sudokupattern.Strategy.Singleton.FactorySingleton;
 import sudokupattern.TP1.Decorateur.DecoLog;
 import sudokupattern.TP1.Interface.Solveur;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 public class CApplication {
 
@@ -36,15 +40,7 @@ public class CApplication {
 
 		CGrille9x9 grille;
 
-		// obtient une grille par strategy
-		//CGrille9x9 grille = (new CAcquisitionGrille(new CFournisseur1())).get();
-
-  /*      JFrame jFrame = new JFrame("IHMSudoku");
-        jFrame.setContentPane(new IHMSudoku().getPrincipalPanel());
-        jFrame.pack();
-        jFrame.setVisible(true);*/
-
-		switch (ihmSudoku.lectureConsole()){
+		switch (lectureConsole()){
 			case "Fichier":
 				grille = factorySingleton.getCAcquisitionGrille().getFileGrille().getFromFile("src//sudokupattern//grille.txt");
 				break;
@@ -85,4 +81,37 @@ public class CApplication {
 			System.err.print("\nErreur lors de la selection.\nRetry le programme.\n");
 		}
 	}
+
+    public static String lectureConsole() {
+        BufferedReader br = null;
+        String input = null;
+
+        try {
+
+            br = new BufferedReader(new InputStreamReader(System.in));
+
+            System.out.println("-----------\n");
+
+            System.out.print("Enter your type mode manually : ");
+            input = br.readLine();
+
+            if ("q".equals(input)) {
+                System.exit(0);
+            }
+
+            System.out.println("-----------\n");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return input;
+    }
 }
