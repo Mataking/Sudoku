@@ -1,12 +1,12 @@
 package sudokupattern.Observer;
 
-import sudokupattern.IHM.IHMSudoku;
+import sudokupattern.IHM.IHM;
 
 import javax.swing.*;
 import java.util.Observable;
 import java.util.Observer;
 
-public class CVisuGrille9x9 extends IHMSudoku implements Observer {
+public class CVisuGrille9x9 extends IHM implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {

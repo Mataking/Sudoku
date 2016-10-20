@@ -1,12 +1,11 @@
 package sudokupattern.TP1;
 
 import sudokupattern.Adapter.CGrilleXMLWriter;
-import sudokupattern.IHM.IHMSudoku;
+import sudokupattern.IHM.IHM;
 import sudokupattern.Iterator.Impl.ModeAcquisitionGrilleIteratorImpl;
 import sudokupattern.Iterator.ModeAcquisitionGrilleContainer;
 import sudokupattern.Observer.CGrille9x9;
 import sudokupattern.Observer.CVisuGrille9x9;
-import sudokupattern.Strategy.Factory.CAcquisitionGrille;
 import sudokupattern.Strategy.Singleton.FactorySingleton;
 import sudokupattern.TP1.Decorateur.DecoLog;
 import sudokupattern.TP1.Interface.Solveur;
@@ -23,7 +22,10 @@ public class CApplication {
 
 		ModeAcquisitionGrilleContainer modeAcquisitionGrilleContainer = new ModeAcquisitionGrilleContainer();
 
-		IHMSudoku ihmSudoku = new IHMSudoku();
+		IHM ihmSudoku = new IHM();
+
+		ihmSudoku.pack();
+		ihmSudoku.setVisible(true);
 
 
         FactorySingleton factorySingleton = FactorySingleton.getInstance();
