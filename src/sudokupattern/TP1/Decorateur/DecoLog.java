@@ -1,27 +1,27 @@
 package sudokupattern.TP1.Decorateur;
 
 import sudokupattern.Observer.CGrille9x9;
-import sudokupattern.TP1.Interface.Solveur;
+import sudokupattern.TP1.Interface.CSolveur9x9Impl;
 
 /**
  * Created by Mata on 03/10/2016.
  */
 public class DecoLog extends Decorateur{
 
-    public DecoLog(Solveur solveur9x9) {
-        super(solveur9x9);
+    public DecoLog(CSolveur9x9Impl solveurImpl9X9) {
+        super(solveurImpl9X9);
     }
 
     @Override
     public String chiffresPossibles(CGrille9x9 g, int l, int c) {
 
-        return solveur9x9.chiffresPossibles(g, l, c);
+        return solveurImpl9X9.chiffresPossibles(g, l, c);
     }
 
     @Override
     public CGrille9x9 solve(CGrille9x9 grille) {
         beginSolver();
-        grille = solveur9x9.solve(grille);
+        grille = solveurImpl9X9.solve(grille);
 
         endSolver();
         return grille;

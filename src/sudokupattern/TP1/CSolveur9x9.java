@@ -1,9 +1,9 @@
 package sudokupattern.TP1;
 
 import sudokupattern.Observer.CGrille9x9;
-import sudokupattern.TP1.Interface.Solveur;
+import sudokupattern.TP1.Interface.CSolveur9x9Impl;
 
-public class CSolveur9x9 implements Solveur {
+public class CSolveur9x9 implements CSolveur9x9Impl {
 
 	  public String chiffresPossibles(CGrille9x9 g, int l, int c) {
 		
@@ -90,7 +90,7 @@ public class CSolveur9x9 implements Solveur {
 			}
 			/* ne boucle pas si pas de modif */
 			if (!modifie) {
-				System.out.println("Arret de resolution - Solveur a ameliorer");
+				System.out.println("Arret de resolution - CSolveur9x9Impl a ameliorer");
 				break;
 			}
 		}

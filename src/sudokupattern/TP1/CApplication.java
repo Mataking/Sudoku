@@ -1,14 +1,13 @@
 package sudokupattern.TP1;
 
 import sudokupattern.Adapter.CGrilleXMLWriter;
-import sudokupattern.IHM.IHM;
 import sudokupattern.Iterator.Impl.ModeAcquisitionGrilleIteratorImpl;
 import sudokupattern.Iterator.ModeAcquisitionGrilleContainer;
 import sudokupattern.Observer.CGrille9x9;
 import sudokupattern.Observer.CVisuGrille9x9;
 import sudokupattern.Strategy.Singleton.FactorySingleton;
 import sudokupattern.TP1.Decorateur.DecoLog;
-import sudokupattern.TP1.Interface.Solveur;
+import sudokupattern.TP1.Interface.CSolveur9x9Impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,10 +21,15 @@ public class CApplication {
 
 		ModeAcquisitionGrilleContainer modeAcquisitionGrilleContainer = new ModeAcquisitionGrilleContainer();
 
-		IHM ihmSudoku = new IHM();
+		CGrille9x9 cGrille9x9 = new CGrille9x9();
 
-		ihmSudoku.pack();
-		ihmSudoku.setVisible(true);
+		CVisuGrille9x9 visu = new CVisuGrille9x9(cGrille9x9);
+
+
+		//Controleur controleur =  new Controleur(modele, vue);
+
+		visu.pack();
+		visu.setVisible(true);
 
 
         FactorySingleton factorySingleton = FactorySingleton.getInstance();
@@ -66,13 +70,13 @@ public class CApplication {
 			//CGrille9x9 grille2 = (new Fabrique.CAcquisitionGrille1()).get();
 
 			// connecte l'observateur
-			CVisuGrille9x9 visu = new CVisuGrille9x9();
+			//CVisuGrille9x9 visu = new CVisuGrille9x9();
 			grille.addObserver(visu);
 
 			// connecte décorateur
 			// resoud
-			Solveur decorateSolveur = (new DecoLog(new CSolveur9x9()));
-			decorateSolveur.solve(grille);
+			CSolveur9x9Impl decorateSolveurImpl = (new DecoLog(new CSolveur9x9()));
+			decorateSolveurImpl.solve(grille);
 
 			// enregistre dans xml
 			CGrilleXMLWriter saver = new CGrilleXMLWriter("example.xml");

@@ -1,12 +1,12 @@
 package sudokupattern.Strategy.Factory;
 
 import sudokupattern.Observer.CGrille9x9;
-import sudokupattern.Strategy.Factory.Impl.AutoGrilleImpl;
+import sudokupattern.Strategy.Factory.Abstract.AbstractAutoGrille;
 
 /**
  * Created by Mata on 04/10/2016.
  */
-public class AutoGrille implements AutoGrilleImpl {
+public class AutoGrille extends AbstractAutoGrille {
     /**
      * @param lvl
      *      lvl 1 = EASY
@@ -14,7 +14,6 @@ public class AutoGrille implements AutoGrilleImpl {
      *      lvl 3 = HARD
      * @return
      */
-    @Override
     public CGrille9x9 getAutoGrille(int lvl) {
 
         CGrille9x9 grille = new CGrille9x9();
@@ -34,7 +33,4 @@ public class AutoGrille implements AutoGrilleImpl {
         }
         return grille;
     }
-
-
-
 }

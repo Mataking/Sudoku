@@ -1,4 +1,4 @@
-package sudokupattern.Fabrique;
+package sudokupattern.Fabrique.Impl;
 
 
 import sudokupattern.Observer.CGrille9x9;

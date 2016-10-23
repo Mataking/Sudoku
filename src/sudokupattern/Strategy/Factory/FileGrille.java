@@ -1,7 +1,7 @@
 package sudokupattern.Strategy.Factory;
 
 import sudokupattern.Observer.CGrille9x9;
-import sudokupattern.Strategy.Factory.Impl.FileGrilleImpl;
+import sudokupattern.Strategy.Factory.Abstract.AbstractFileGrille;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by Mata on 04/10/2016.
  */
-public class FileGrille implements FileGrilleImpl {
+public class FileGrille extends AbstractFileGrille {
 
     @Override
     public CGrille9x9 getFromFile(String name) {

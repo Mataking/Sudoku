@@ -1,5 +1,6 @@
 package sudokupattern.Adapter;
 
+import sudokupattern.Adapter.Impl.IGrilleWriter;
 import sudokupattern.Observer.CGrille9x9;
 
 public class CGrilleXMLWriter implements IGrilleWriter {

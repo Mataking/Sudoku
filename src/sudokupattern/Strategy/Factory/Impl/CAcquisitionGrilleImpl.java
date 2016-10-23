@@ -1,5 +1,7 @@
 package sudokupattern.Strategy.Factory.Impl;
 
+import sudokupattern.Strategy.Factory.Abstract.AbstractAutoGrille;
+import sudokupattern.Strategy.Factory.Abstract.AbstractFileGrille;
 import sudokupattern.Strategy.Factory.ManuelGrille;
 import sudokupattern.Strategy.Factory.PictureGrille;
 
@@ -8,8 +10,8 @@ import sudokupattern.Strategy.Factory.PictureGrille;
  */
 
 public interface CAcquisitionGrilleImpl {
-    FileGrilleImpl getFileGrille();
-    AutoGrilleImpl getAutoGrille();
+    AbstractFileGrille getFileGrille();
+    AbstractAutoGrille getAutoGrille();
     ManuelGrille getManualGrille();
     PictureGrille getPictureGrille();
 }

@@ -1,6 +1,7 @@
 package sudokupattern.Fabrique;
 
 
+import sudokupattern.Fabrique.Impl.IAcquisitionGrille;
 import sudokupattern.Observer.CGrille9x9;
 
 public class CAcquisitionGrille1 implements IAcquisitionGrille {

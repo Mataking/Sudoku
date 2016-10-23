@@ -1,5 +1,6 @@
 package sudokupattern.Strategy.Singleton;
 
+import sudokupattern.Observer.CGrille9x9;
 import sudokupattern.Strategy.Factory.CAcquisitionGrille;
 
 /**
@@ -26,6 +27,8 @@ public class FactorySingleton {
 
     public CAcquisitionGrille getCAcquisitionGrille() {
 
-        return new CAcquisitionGrille();
+        return new CAcquisitionGrille() {
+
+        };
     }
 }
