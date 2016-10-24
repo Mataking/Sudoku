@@ -1,10 +1,11 @@
-package sudokupattern.Observer;
+package sudokupattern.IHM;
 
 /**
  * Created by Mata on 23/10/2016.
  */
 
 import sudokupattern.IHM.IHM;
+import sudokupattern.Observer.CGrille9x9;
 
 import javax.swing.*;
 import java.util.Observable;

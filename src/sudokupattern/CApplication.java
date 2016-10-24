@@ -1,13 +1,13 @@
-package sudokupattern.TP1;
+package sudokupattern;
 
 import sudokupattern.Adapter.CGrilleXMLWriter;
 import sudokupattern.Iterator.Impl.ModeAcquisitionGrilleIteratorImpl;
 import sudokupattern.Iterator.ModeAcquisitionGrilleContainer;
 import sudokupattern.Observer.CGrille9x9;
-import sudokupattern.Observer.CVisuGrille9x9;
+import sudokupattern.IHM.CVisuGrille9x9;
 import sudokupattern.Strategy.Singleton.FactorySingleton;
-import sudokupattern.TP1.Decorateur.DecoLog;
-import sudokupattern.TP1.Interface.CSolveur9x9Impl;
+import sudokupattern.Decorateur.DecoLog;
+import sudokupattern.Interface.CSolveur9x9Impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;

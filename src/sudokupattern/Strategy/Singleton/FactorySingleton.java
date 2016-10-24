@@ -1,12 +1,15 @@
 package sudokupattern.Strategy.Singleton;
 
-import sudokupattern.Observer.CGrille9x9;
 import sudokupattern.Strategy.Factory.CAcquisitionGrille;
 
 /**
  * Created by Mata on 12/10/2016.
  */
-public class FactorySingleton {
+
+/**
+ * Make final to forbidden creation girl-class
+ */
+public final class FactorySingleton {
 
     /** Constructeur privé */
     private FactorySingleton()
@@ -27,7 +30,7 @@ public class FactorySingleton {
 
     public CAcquisitionGrille getCAcquisitionGrille() {
 
-        return new CAcquisitionGrille() {
+        return new CAcquisitionGrille(FactorySingleton.getInstance()) {
 
         };
     }

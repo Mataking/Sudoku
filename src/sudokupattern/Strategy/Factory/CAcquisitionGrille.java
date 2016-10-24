@@ -3,8 +3,12 @@ package sudokupattern.Strategy.Factory;
 import sudokupattern.Strategy.Factory.Abstract.AbstractAutoGrille;
 import sudokupattern.Strategy.Factory.Abstract.AbstractFileGrille;
 import sudokupattern.Strategy.Factory.Impl.*;
+import sudokupattern.Strategy.Singleton.FactorySingleton;
 
 public class CAcquisitionGrille implements CAcquisitionGrilleImpl{
+
+    public CAcquisitionGrille(FactorySingleton instance) {
+    }
 
     public AbstractFileGrille getFileGrille() {
         return new FileGrille();

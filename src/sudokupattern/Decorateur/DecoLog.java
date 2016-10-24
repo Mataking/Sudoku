@@ -1,7 +1,7 @@
-package sudokupattern.TP1.Decorateur;
+package sudokupattern.Decorateur;
 
 import sudokupattern.Observer.CGrille9x9;
-import sudokupattern.TP1.Interface.CSolveur9x9Impl;
+import sudokupattern.Interface.CSolveur9x9Impl;
 
 /**
  * Created by Mata on 03/10/2016.

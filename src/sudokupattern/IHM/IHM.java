@@ -1,8 +1,5 @@
 package sudokupattern.IHM;
 
-import sudokupattern.Observer.CGrille9x9;
-import sudokupattern.Observer.CVisuGrille9x9;
-
 import javax.swing.*;
 import java.awt.*;
 
