@@ -27,6 +27,11 @@ public class DecoLog extends Decorateur{
         return grille;
     }
 
+    @Override
+    public String gridToString(CGrille9x9 grid) {
+        return null;
+    }
+
     private void beginSolver(){
         System.out.println("Début du solveur");
     }
