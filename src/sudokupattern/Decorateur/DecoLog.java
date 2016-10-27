@@ -13,12 +13,6 @@ public class DecoLog extends Decorateur{
     }
 
     @Override
-    public String chiffresPossibles(CGrille9x9 g, int l, int c) {
-
-        return solveurImpl9X9.chiffresPossibles(g, l, c);
-    }
-
-    @Override
     public CGrille9x9 solve(CGrille9x9 grille) {
         beginSolver();
         grille = solveurImpl9X9.solve(grille);
