@@ -28,8 +28,8 @@ public class CApplication {
 
 		//Controleur controleur =  new Controleur(modele, vue);
 
-		visu.pack();
-		visu.setVisible(true);
+		//visu.pack();
+		//visu.setVisible(true);
 
 
         FactorySingleton factorySingleton = FactorySingleton.getInstance();
