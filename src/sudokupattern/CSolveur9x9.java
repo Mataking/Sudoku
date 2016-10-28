@@ -56,7 +56,7 @@ public class CSolveur9x9 implements CSolveur9x9Impl {
         return false;
     }
 
-    //conversion from Cgrille object to string object
+    //conversion from CGrille9x9 object to string object
     public String gridToString(CGrille9x9 grid) {
         String grid_string = new String();
 
@@ -72,7 +72,7 @@ public class CSolveur9x9 implements CSolveur9x9Impl {
         return grid_string;
     }
 
-    // solver
+    // Backtracking method to solve sudoku
     public CGrille9x9 solve(CGrille9x9 grid) {
 
         String grid_string = gridToString(grid);

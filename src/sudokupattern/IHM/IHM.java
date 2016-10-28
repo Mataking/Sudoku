@@ -49,15 +49,9 @@ public class IHM extends JFrame implements ItemListener, ActionListener {
             }
         }
 */
-
-        //CODE AJOUTER A PARTIR DE LA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
          public IHM(){
              //Creation of the interface
              initialisation();
-             ajoutAccueil();
-
-
              this.setVisible(true);
         }
 
@@ -73,7 +67,7 @@ public class IHM extends JFrame implements ItemListener, ActionListener {
             this.setTitle("Solveur sudoku");
         }
 
-        public void ajoutAccueil(){
+        public void ajoutMethodAcquistion(){
             JPanel panel = new JPanel();
             Box bottom = Box.createVerticalBox();
 
@@ -81,8 +75,9 @@ public class IHM extends JFrame implements ItemListener, ActionListener {
             panel.setBorder(border);
 
             JLabel label = new JLabel("Ce programme permet de résoudre une grille du jeu de sudoku.");
-            JLabel label1 = new JLabel("Veuillez choisir une méthode d'acquisition de grille :");
             bottom.add(label);
+
+            JLabel label1 = new JLabel("Veuillez choisir une méthode d'acquisition de grille :");
             bottom.add(label1);
 
             ButtonGroup group = new ButtonGroup();
@@ -127,7 +122,6 @@ public class IHM extends JFrame implements ItemListener, ActionListener {
 
             Container contentPane = this.getContentPane();
             contentPane.add(panel, BorderLayout.CENTER);
-
         }
 
     @Override

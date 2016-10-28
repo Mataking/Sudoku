@@ -26,11 +26,16 @@ public class CApplication {
 		CVisuGrille9x9 visu = new CVisuGrille9x9(cGrille9x9);
 
 
+		//INITIALISATION DE L INTERFACE
+
+		//Appel des methodes d'acquisition de l'ihm (A MODIFIER POUR AJOUTER GRACE A L ITERATOR)
+		visu.ajoutMethodAcquistion();
+
+
+
+
+		//Un debut de mvc qui se balade
 		//Controleur controleur =  new Controleur(modele, vue);
-
-		//visu.pack();
-		//visu.setVisible(true);
-
 
         FactorySingleton factorySingleton = FactorySingleton.getInstance();
 
@@ -45,6 +50,8 @@ public class CApplication {
 		}
 
 		CGrille9x9 grille;
+
+
 
 		switch (lectureConsole()){
 			case "Fichier":
