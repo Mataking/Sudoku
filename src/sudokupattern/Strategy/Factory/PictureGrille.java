@@ -1,10 +1,16 @@
 package sudokupattern.Strategy.Factory;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
+import java.awt.image.Raster;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
 import sudokupattern.Observer.CGrille9x9;
 import sudokupattern.Strategy.Factory.Abstract.AbstractPictureGrille;
@@ -45,23 +51,49 @@ public class PictureGrille extends AbstractPictureGrille {
 
     @Override
     public CGrille9x9 getFromPicture() {
-       /* String path = "src/sudokupattern/sudoku-le-monde-12.jpg";
-        String pathImageResize = "src/sudokupattern/sudoku-le-monde-15.jpg";
 
-        BufferedImage picture = null;
-
+        String path = "src/sudokupattern/Sudoku44.jpg";
+        //String path = "src/sudokupattern/sudoku-le-monde-9.png";
         File filePicture = new File(path);
-        picture = loadPicture(filePicture);
+        BufferedImage imgSource = null;
 
+        try{
+            imgSource = ImageIO.read(filePicture);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+     /*   if (imgSource.getHeight() != 620 || imgSource.getWidth() != 620) {
+            int type = imgSource.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : imgSource.getType();
+
+            imgSource = resizeImage(imgSource, type);
+        }*/
+
+    /*    System.out.println(new Color(imgSource.getRGB(1,1)));
+        if(new Color(imgSource.getRGB(1,1)).getRed() != 0) {
+            System.out.println("coucou");
+            imgSource = detectValuePixel(imgSource);
+        }*/
+
+       /* if (imgSource.getHeight() != 620 || imgSource.getWidth() != 620) {
+            int type = imgSource.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : imgSource.getType();
+
+            imgSource = resizeImage(imgSource, type);
+        }*/
+
+        //else{
+        //    System.out.println("55");
+            imgSource = contour(imgSource);
+        //}
+
+        System.out.println(imgSource);
 
         try {
-            ImageIO.write(picture, "jpg", new File(pathImageResize));
-
-            cutPicture(path);
-        } catch (IOException fromPicture) {
-            System.out.println(fromPicture);
-        }*/
-        resizeImageWithoutBlack();
+            ImageIO.write(imgSource, "jpg", new File("src/sudokupattern/withoutBlack.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //resizeImageWithoutBlack();
         return null;
     }
 
@@ -152,5 +184,92 @@ public class PictureGrille extends AbstractPictureGrille {
 
         }
 
+    }
+
+    public static BufferedImage contour(BufferedImage src) {
+
+        BufferedImage dst = new BufferedImage(src.getWidth(), src.getHeight(),
+                BufferedImage.TYPE_INT_ARGB);
+        // Definition du masque de convolution utilisé pour la détéction des contours de
+        // l'image
+        float[] mask = { -0.1F, -0.1F, -0.1F, -0.1F, 0.8F, -0.1F, -0.1F, -0.1F, -0.1F};
+        Kernel kernel = new Kernel(3, 3, mask);
+        // On creer notre outils de convolution
+        ConvolveOp convo = new ConvolveOp(kernel);
+        // On effectue la convolution
+        convo.filter(src, dst);
+        // On retourne l'image convoluée
+        return dst;
+    }
+
+    public BufferedImage detectValuePixel(BufferedImage image){
+        BufferedImage dst = new BufferedImage(image.getWidth(), image.getHeight(),
+                BufferedImage.TYPE_INT_ARGB);
+
+        BufferedImage carroty;
+
+        int pixelXHautGauche = 0;
+        int pixelYHautGauche = 0;
+        int pixelXBasDroit = 0;
+        int pixelYBasDroit = 0;
+
+        //ArrayList<String> get = new ArrayList<>();
+        for (int j = 0; j < image.getHeight(); j++) {
+            for (int i = 0; i < image.getWidth(); i++) {
+                Color mycolor = new Color(image.getRGB(i, j));
+                //System.out.println(mycolor.getRed());
+                if(mycolor.getRed() < 150 || mycolor.getBlue() < 150 || mycolor.getGreen() < 150){
+                    dst.setRGB(i, j, Color.BLACK.getRGB());
+                }
+            }
+        }
+
+        try {
+            ImageIO.write(dst, "jpg", new File("src/sudokupattern/color.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (int j = 0; j < dst.getHeight(); j++) {
+            for (int i = 0; i < dst.getWidth(); i++) {
+                Color mycolor2 = new Color(dst.getRGB(i, j));
+                if(mycolor2.getRed() != 0 || mycolor2.getBlue() != 0 || mycolor2.getGreen() != 0)
+                {
+                    pixelXHautGauche = i;
+                    pixelYHautGauche = j;
+                    i = dst.getWidth();
+                    j = dst.getHeight();
+                }
+            }
+        }
+
+        for (int k = dst.getWidth()-1; k > 0; k--) {
+            for (int m = dst.getHeight()-1; m > 0; m--) {
+                Color mycolor3 = new Color(dst.getRGB(k, m));
+                //System.out.println(mycolor3);
+                if(mycolor3.getRed() != 0 || mycolor3.getBlue() != 0 || mycolor3.getGreen() != 0)
+                {
+                    pixelXBasDroit = m;
+                    pixelYBasDroit = k;
+                    m = 0;
+                    k = 0;
+                }
+            }
+        }
+
+        System.out.println(pixelXBasDroit);
+        System.out.println(pixelYBasDroit);
+        System.out.println(pixelXHautGauche);
+        System.out.println(pixelYHautGauche);
+
+        carroty = dst.getSubimage(pixelXHautGauche, pixelYHautGauche, (dst.getWidth()-pixelXHautGauche)-(dst.getWidth()-pixelYBasDroit), (dst.getHeight()-pixelYHautGauche)-(dst.getHeight()-pixelXBasDroit));
+        /*try {
+            ImageIO.write(carroty, "jpg", new File("src/sudokupattern/color.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //System.out.println(get);*/
+
+        return carroty;
     }
 }
