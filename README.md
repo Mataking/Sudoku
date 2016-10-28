@@ -5,8 +5,8 @@ The purpose of this application is to solve sudoku with a JAVA application using
 
 ##Built with
 
-*[IntelliJ](https://www.jetbrains.com/idea/?fromMenu) - The Java IDE 
-*[GitKraken](https://www.gitkraken.com/) - The VCS
+* [IntelliJ](https://www.jetbrains.com/idea/?fromMenu) - The Java IDE 
+* [GitKraken](https://www.gitkraken.com/) - The VCS
 
 ## Authors
 
