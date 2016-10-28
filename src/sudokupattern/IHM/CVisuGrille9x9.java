@@ -7,6 +7,7 @@ package sudokupattern.IHM;
 import sudokupattern.Observer.CGrille9x9;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,7 +27,12 @@ public class CVisuGrille9x9 extends IHM implements Observer {
     @Override
     public void update(Observable o, Object arg) {
 
+        //TESTS
+        System.out.print("Le bon moment !");
+
         CGrille9x9 gr = (CGrille9x9)arg;
+        afficherGrille(gr);
+
         System.out.println();
         for (int l=1; l<10; l++) {
             for (int c=1; c<10; c++) {
@@ -35,12 +41,48 @@ public class CVisuGrille9x9 extends IHM implements Observer {
             }
             if(l == 3 || l== 6){
                 System.out.println("");
-                JLabel la = new JLabel();
                 System.out.println("------|-------|------");
             }
             else
                 System.out.println("");
         }
+
+    }
+
+
+    //Fonction à modifier !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void afficherGrille(CGrille9x9 grille){
+
+        System.out.println("Debut affichage grille");
+        JTextField f[][]= new JTextField[9][9] ;
+        JPanel p[][]= new JPanel [3][3];
+
+        for(int x=0; x<=8; x++){
+            for(int y=0; y<=8; y++){
+                f[x][y]=new JTextField(grille.get(x+1,y+1));
+            }
+        }
+
+        for(int x=0; x<=2; x++){
+            for(int y=0; y<=2; y++){
+                p[x][y]=new JPanel(new GridLayout(3,3));
+            }
+        }
+
+        setLayout(new GridLayout(3,3,5,5));
+
+        for(int u=0; u<=2; u++){
+            for(int i=0; i<=2; i++){
+               for(int x=0; x<=2; x++ ){
+                   for(int y=0; y<=2; y++){
+                        p[u][i].add(f[y+u*3][x+i*3]);
+                    }
+                }
+                add(p[u][i]);
+            }
+        }
+        System.out.println("Fin affichage grille");
 
     }
 

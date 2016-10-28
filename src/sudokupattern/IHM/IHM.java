@@ -16,7 +16,6 @@ public class IHM extends JFrame implements ItemListener, ActionListener {
         /**
          // A GARDER POUR L AFFICHAGE DU SUDOKU ET DU SOLVEUR
 
-        private static final long serialVersionUID = 0;
         private JTextField f[][]= new JTextField[9][9] ;
         private JPanel p[][]= new JPanel [3][3];
 
