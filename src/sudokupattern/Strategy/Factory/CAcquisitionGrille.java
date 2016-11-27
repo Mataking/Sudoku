@@ -10,11 +10,11 @@ public class CAcquisitionGrille implements CAcquisitionGrilleImpl{
     public CAcquisitionGrille(FactorySingleton instance) {
     }
 
-    public AbstractFileGrille getFileGrille() {
+    public FileGrille getFileGrille() {
         return new FileGrille();
     }
 
-    public AbstractAutoGrille getAutoGrille() {
+    public AutoGrille getAutoGrille() {
         return new AutoGrille();
     }
 

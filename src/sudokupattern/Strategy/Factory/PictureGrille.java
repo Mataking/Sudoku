@@ -50,9 +50,9 @@ public class PictureGrille extends AbstractPictureGrille {
     }
 
     @Override
-    public CGrille9x9 getFromPicture() {
+    public CGrille9x9 getFromPicture(String path) {
 
-        String path = "src/sudokupattern/Sudoku44.jpg";
+        path = "src/sudokupattern/Sudoku44.jpg";
         //String path = "src/sudokupattern/sudoku-le-monde-9.png";
         File filePicture = new File(path);
         BufferedImage imgSource = null;

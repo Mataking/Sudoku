@@ -54,7 +54,7 @@ public class CApplication {
 				grille = factorySingleton.getCAcquisitionGrille().getManualGrille().getFromManuel();
 				break;
 			case "Image":
-				grille = factorySingleton.getCAcquisitionGrille().getPictureGrille().getFromPicture();
+				grille = factorySingleton.getCAcquisitionGrille().getPictureGrille().getFromPicture("");
 				break;
             case "Automatique":
                 grille = factorySingleton.getCAcquisitionGrille().getAutoGrille().getAutoGrille(2);
