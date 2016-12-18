@@ -1,6 +1,7 @@
 package sudokupattern;
 
 import sudokupattern.Adapter.CGrilleXMLWriter;
+import sudokupattern.IHM.IHM;
 import sudokupattern.Iterator.Impl.ModeAcquisitionGrilleIteratorImpl;
 import sudokupattern.Iterator.ModeAcquisitionGrilleContainer;
 import sudokupattern.Observer.CGrille9x9;
@@ -9,15 +10,12 @@ import sudokupattern.Strategy.Singleton.FactorySingleton;
 import sudokupattern.Decorateur.DecoLog;
 import sudokupattern.Interface.CSolveur9x9Impl;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-
 public class CApplication {
 
+	public static int choixAcquisitionGrille = 0;
+
 	// programme principal
-	public static synchronized void main(String[] args) {
+	public static synchronized void main(String[] args) throws InterruptedException {
 
 		ModeAcquisitionGrilleContainer modeAcquisitionGrilleContainer = new ModeAcquisitionGrilleContainer();
 
@@ -49,36 +47,44 @@ public class CApplication {
 			System.out.println("Name : " + name);
 		}
 
-		CGrille9x9 grille;
+		CGrille9x9 grille = null;
 
 
+		
+		while(choixAcquisitionGrille == 0){
 
-		switch (lectureConsole()){
-			case "Fichier":
-				grille = factorySingleton.getCAcquisitionGrille().getFileGrille().getFromFile("src//sudokupattern//grille.txt");
-				break;
-			case "Manuel":
-				grille = factorySingleton.getCAcquisitionGrille().getManualGrille().getFromManuel();
-				break;
-			case "Image":
-				grille = factorySingleton.getCAcquisitionGrille().getPictureGrille().getFromPicture();
-				break;
-            case "Automatique":
-                grille = factorySingleton.getCAcquisitionGrille().getAutoGrille().getAutoGrille(2);
-                break;
-			default:
-				grille = null;
+			System.out.println("Analyse et chargement");
 
-				break;
+			Thread.sleep(2000);
+
+			switch (choixAcquisitionGrille){
+				case 1:
+					grille = factorySingleton.getCAcquisitionGrille().getFileGrille().getFromFile("src//sudokupattern//grille.txt");
+					break;
+				case 2:
+					grille = factorySingleton.getCAcquisitionGrille().getManualGrille().getFromManuel();
+					break;
+				case 3:
+					grille = factorySingleton.getCAcquisitionGrille().getPictureGrille().getFromPicture();
+					break;
+				case 4:
+					grille = factorySingleton.getCAcquisitionGrille().getAutoGrille().getAutoGrille(2);
+					break;
+				default:
+					choixAcquisitionGrille = 0;
+					grille = null;
+	
+					break;
+			}
 		}
 
 		if(grille != null){
-			// obtient une grille par fabrique simple
-			//CGrille9x9 grille2 = (new Fabrique.CAcquisitionGrille1()).get();
+			System.out.println("coucou");
 
-			// connecte l'observateur
-			//CVisuGrille9x9 visu = new CVisuGrille9x9();
 			grille.addObserver(visu);
+
+			visu.afficherGrille(grille);
+			System.out.println("coucou");
 
 			// connecte décorateur
 			// resoud
@@ -95,36 +101,7 @@ public class CApplication {
 		}
 	}
 
-    public static String lectureConsole() {
-        BufferedReader br = null;
-        String input = null;
-
-        try {
-
-            br = new BufferedReader(new InputStreamReader(System.in));
-
-            System.out.println("-----------\n");
-
-            System.out.print("Enter your type mode manually : ");
-            input = br.readLine();
-
-            if ("q".equals(input)) {
-                System.exit(0);
-            }
-
-            System.out.println("-----------\n");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return input;
-    }
+	public static void lecture(int choix) {
+		choixAcquisitionGrille = choix;
+	}
 }

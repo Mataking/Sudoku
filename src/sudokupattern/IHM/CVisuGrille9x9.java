@@ -54,6 +54,12 @@ public class CVisuGrille9x9 extends IHM implements Observer {
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public void afficherGrille(CGrille9x9 grille){
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Debut affichage grille");
         JTextField f[][]= new JTextField[9][9] ;
         JPanel p[][]= new JPanel [3][3];
@@ -82,8 +88,9 @@ public class CVisuGrille9x9 extends IHM implements Observer {
                 add(p[u][i]);
             }
         }
-        System.out.println("Fin affichage grille");
 
+
+        System.out.println("Fin affichage grille");
     }
 
 }

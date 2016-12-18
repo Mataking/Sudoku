@@ -1,12 +1,12 @@
 package sudokupattern.IHM;
 
+import sudokupattern.CApplication;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Enumeration;
 
-import static sudokupattern.CApplication.lectureConsole;
 
 /**
  * Created by Mata on 20/10/2016.
@@ -130,6 +130,7 @@ public class IHM extends JFrame implements ItemListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         int method = Integer.parseInt(e.getActionCommand());
+        CApplication.lecture(method);
         System.out.println("Clic sur le bouton : " +method);
     }
 }
