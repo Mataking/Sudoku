@@ -263,12 +263,6 @@ public class PictureGrille extends AbstractPictureGrille {
         System.out.println(pixelYHautGauche);
 
         carroty = dst.getSubimage(pixelXHautGauche, pixelYHautGauche, (dst.getWidth()-pixelXHautGauche)-(dst.getWidth()-pixelYBasDroit), (dst.getHeight()-pixelYHautGauche)-(dst.getHeight()-pixelXBasDroit));
-        /*try {
-            ImageIO.write(carroty, "jpg", new File("src/sudokupattern/color.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //System.out.println(get);*/
 
         return carroty;
     }

@@ -59,10 +59,10 @@ public class CApplication {
 					grille = factorySingleton.getCAcquisitionGrille().getManualGrille().getFromManuel();
 					break;
 				case 3:
-					grille = factorySingleton.getCAcquisitionGrille().getPictureGrille().getFromPicture();
+					grille = factorySingleton.getCAcquisitionGrille().getPictureGrille().getFromPicture("");
 					break;
 				case 4:
-					grille = factorySingleton.getCAcquisitionGrille().getAutoGrille().getAutoGrille(2);
+					grille = factorySingleton.getCAcquisitionGrille().getAutoGrille().getAutoGrille(1);
 					break;
 				default:
 					choixAcquisitionGrille = 0;

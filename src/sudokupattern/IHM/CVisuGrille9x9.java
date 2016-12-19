@@ -85,11 +85,6 @@ public class CVisuGrille9x9 extends IHM implements Observer {
             }
         }
 
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         // Set the size of the content-pane and pack all the components
         //  under this container.
         cp.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
