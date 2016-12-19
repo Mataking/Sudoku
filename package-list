@@ -1,0 +1,13 @@
+sudokupattern
+sudokupattern.Adapter
+sudokupattern.Adapter.Impl
+sudokupattern.Decorateur
+sudokupattern.IHM
+sudokupattern.Interface
+sudokupattern.Iterator
+sudokupattern.Iterator.Impl
+sudokupattern.Observer
+sudokupattern.Strategy.Factory
+sudokupattern.Strategy.Factory.Abstract
+sudokupattern.Strategy.Factory.Impl
+sudokupattern.Strategy.Singleton
