@@ -15,7 +15,7 @@ public class CApplication {
 	public static int choixAcquisitionGrille = 0;
 
 	// programme principal
-	public static synchronized void main(String[] args) throws InterruptedException {
+	public static synchronized void main(String[] args) {
 
 		ModeAcquisitionGrilleContainer modeAcquisitionGrilleContainer = new ModeAcquisitionGrilleContainer();
 
@@ -23,17 +23,9 @@ public class CApplication {
 
 		CVisuGrille9x9 visu = new CVisuGrille9x9(cGrille9x9);
 
-
 		//INITIALISATION DE L INTERFACE
 
-		//Appel des methodes d'acquisition de l'ihm (A MODIFIER POUR AJOUTER GRACE A L ITERATOR)
 		visu.ajoutMethodAcquistion();
-
-
-
-
-		//Un debut de mvc qui se balade
-		//Controleur controleur =  new Controleur(modele, vue);
 
         FactorySingleton factorySingleton = FactorySingleton.getInstance();
 
@@ -53,9 +45,11 @@ public class CApplication {
 		
 		while(choixAcquisitionGrille == 0){
 
-			System.out.println("Analyse et chargement");
-
-			Thread.sleep(2000);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 
 			switch (choixAcquisitionGrille){
 				case 1:
@@ -79,12 +73,7 @@ public class CApplication {
 		}
 
 		if(grille != null){
-			System.out.println("coucou");
-
 			grille.addObserver(visu);
-
-		//	visu.initDisplayGrille(grille);
-			System.out.println("coucou");
 
 			// connecte décorateur
 			// resoud

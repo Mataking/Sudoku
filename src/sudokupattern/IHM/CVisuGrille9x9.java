@@ -30,10 +30,6 @@ public class CVisuGrille9x9 extends IHM implements Observer {
     public static final Font FONT_NUMBERS = new Font("Monospaced", Font.BOLD, 20);
 
 
-    // The game board composes of 9x9 JTextFields,
-    // each containing String "1" to "9", or empty String
-    private JTextField[][] tfCells = new JTextField[GRID_SIZE][GRID_SIZE];
-
     CGrille9x9 cGrille9x9;
 
     public CVisuGrille9x9(CGrille9x9 cGrille9x9){
@@ -68,13 +64,13 @@ public class CVisuGrille9x9 extends IHM implements Observer {
     }
 
     public void initDisplayGrille(CGrille9x9 gr) {
-
+        JTextField[][] tfCells = new JTextField[10][10];
         Container cp = getContentPane();
         cp.setLayout(new GridLayout(9, 9));  // 9x9 GridLayout
 
         // Construct 9x9 JTextFields and add to the content-pane
-        for (int l=1; l<9; l++) {
-            for (int c=1; c<9; c++) {
+        for (int l=1; l<10; l++) {
+            for (int c=1; c<10; c++) {
                 tfCells[c][l] = new JTextField(); // Allocate element of array
                 cp.add(tfCells[c][l]);            // ContentPane adds JTextField
 
@@ -99,7 +95,7 @@ public class CVisuGrille9x9 extends IHM implements Observer {
         cp.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
         pack();
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Handle window closing
+        setVisible(true);
 
         frameInit();
     }
