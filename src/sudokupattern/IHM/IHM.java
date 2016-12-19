@@ -48,11 +48,14 @@ public class IHM extends JFrame implements ItemListener, ActionListener {
             }
         }
 */
+
          public IHM(){
-             //Creation of the interface
+
+             setTitle("Sudoku");
+
              initialisation();
              this.setVisible(true);
-        }
+         }
 
         public void initialisation(){
             /** Creation de la fenetre de base **/
@@ -132,5 +135,6 @@ public class IHM extends JFrame implements ItemListener, ActionListener {
         int method = Integer.parseInt(e.getActionCommand());
         CApplication.lecture(method);
         System.out.println("Clic sur le bouton : " +method);
+        frameInit();
     }
 }

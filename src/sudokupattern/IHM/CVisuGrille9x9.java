@@ -16,13 +16,31 @@ import java.util.Observer;
  */
 public class CVisuGrille9x9 extends IHM implements Observer {
 
+
+    public static final int GRID_SIZE = 9;    // Size of the board
+    public static final int SUBGRID_SIZE = 3; // Size of the sub-grid
+    // Name-constants for UI control (sizes, colors and fonts)
+    public static final int CELL_SIZE = 60;   // Cell width/height in pixels
+    public static final int CANVAS_WIDTH  = CELL_SIZE * GRID_SIZE;
+    public static final int CANVAS_HEIGHT = CELL_SIZE * GRID_SIZE;
+    // Board width/height in pixels
+
+    public static final Color CLOSED_CELL_BGCOLOR = new Color(240, 240, 240); // RGB
+    public static final Color CLOSED_CELL_TEXT = Color.BLACK;
+    public static final Font FONT_NUMBERS = new Font("Monospaced", Font.BOLD, 20);
+
+
+    // The game board composes of 9x9 JTextFields,
+    // each containing String "1" to "9", or empty String
+    private JTextField[][] tfCells = new JTextField[GRID_SIZE][GRID_SIZE];
+
     CGrille9x9 cGrille9x9;
 
     public CVisuGrille9x9(CGrille9x9 cGrille9x9){
         this.cGrille9x9 = cGrille9x9;
-
         cGrille9x9.addObserver(this);
     }
+
 
     @Override
     public void update(Observable o, Object arg) {
@@ -31,7 +49,8 @@ public class CVisuGrille9x9 extends IHM implements Observer {
         System.out.print("Le bon moment !");
 
         CGrille9x9 gr = (CGrille9x9)arg;
-        afficherGrille(gr);
+
+        initDisplayGrille(gr);
 
         System.out.println();
         for (int l=1; l<10; l++) {
@@ -46,51 +65,42 @@ public class CVisuGrille9x9 extends IHM implements Observer {
             else
                 System.out.println("");
         }
-
     }
 
+    public void initDisplayGrille(CGrille9x9 gr) {
 
-    //Fonction à modifier !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public void afficherGrille(CGrille9x9 grille){
+        Container cp = getContentPane();
+        cp.setLayout(new GridLayout(9, 9));  // 9x9 GridLayout
+
+        // Construct 9x9 JTextFields and add to the content-pane
+        for (int l=1; l<9; l++) {
+            for (int c=1; c<9; c++) {
+                tfCells[c][l] = new JTextField(); // Allocate element of array
+                cp.add(tfCells[c][l]);            // ContentPane adds JTextField
+
+                tfCells[c][l].setText(gr.get(c, l) + " ");
+                tfCells[c][l].setEditable(false);
+                tfCells[c][l].setBackground(CLOSED_CELL_BGCOLOR);
+                tfCells[c][l].setForeground(CLOSED_CELL_TEXT);
+
+                // Beautify all the cells
+                tfCells[c][l].setHorizontalAlignment(JTextField.CENTER);
+                tfCells[c][l].setFont(FONT_NUMBERS);
+            }
+        }
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        // Set the size of the content-pane and pack all the components
+        //  under this container.
+        cp.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
+        pack();
 
-        System.out.println("Debut affichage grille");
-        JTextField f[][]= new JTextField[9][9] ;
-        JPanel p[][]= new JPanel [3][3];
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Handle window closing
 
-        for(int x=0; x<=8; x++){
-            for(int y=0; y<=8; y++){
-                f[x][y]=new JTextField(grille.get(x+1,y+1));
-            }
-        }
-
-        for(int x=0; x<=2; x++){
-            for(int y=0; y<=2; y++){
-                p[x][y]=new JPanel(new GridLayout(3,3));
-            }
-        }
-
-        setLayout(new GridLayout(3,3,5,5));
-
-        for(int u=0; u<=2; u++){
-            for(int i=0; i<=2; i++){
-               for(int x=0; x<=2; x++ ){
-                   for(int y=0; y<=2; y++){
-                        p[u][i].add(f[y+u*3][x+i*3]);
-                    }
-                }
-                add(p[u][i]);
-            }
-        }
-
-
-        System.out.println("Fin affichage grille");
+        frameInit();
     }
-
 }

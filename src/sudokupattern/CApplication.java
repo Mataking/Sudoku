@@ -83,7 +83,7 @@ public class CApplication {
 
 			grille.addObserver(visu);
 
-			visu.afficherGrille(grille);
+		//	visu.initDisplayGrille(grille);
 			System.out.println("coucou");
 
 			// connecte décorateur
